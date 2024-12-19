@@ -25,4 +25,53 @@ for suit in SUIT_TUPLE:
     for thisValue, rank in enumerate(RANK_TUPLE):
         cardDict = {'rank':rank, 'suit':suit, 'value':thisValue +1}
         startingDeckList.append(cardDict)
-        
+
+score = 50
+
+while True:
+    print()
+    gameDeckList = shuffle(startingDeckList)
+    currentCardDict = getCard(gameDeckList)
+    currentCardRank = currentCardDict['rank']
+    currentCardValue = currentCardDict['value']
+    currentCardSuit = currentCardDict['suit']
+    print('Starting card is:', currentCardRank + ' of ' + currentCardSuit)
+    print()
+
+
+    for cardNumber in range(0, NCARDS):
+        answer = input('Will the next card be higher or lower than the ' + 
+        currentCardRank + ' of ' +
+        currentCardSuit + '? (enter h or l): ')
+
+
+        answer = answer.casefold() #force lowercase
+        nextCardDict = getCard(gameDeckList)
+        nextCardRank = nextCardDict['rank']
+        nextCardSuit = nextCardDict['suit']
+        nextCardValue = nextCardDict['value']
+        print('Next card is:', nextCardRank + ' of ' + nextCardSuit)
+
+        if answer == 'h':
+            if nextCardValue > currentCardValue:
+                print('You got it right, it was higher')
+                score = score + 20
+            else: 
+                print('Sorry, it as not higher')
+                score = score - 15
+            elif answer == 'l':
+                if nextCardValue < currentCardValue:
+                    score = score + 20
+                    print('You got it right, it was lower')
+
+                else:
+                    score = score - 15
+                    print('Sorry, it was not lower')
+            print('Your score is: ', score)
+            print()
+            currentCardRank = nextCardRank
+            currentCardValue = nextCardValue
+        goAgain = input('To play again, press ENTER, or "q" to quit: ')
+        if goAgain == 'q':
+            break
+    print('OK bye')
