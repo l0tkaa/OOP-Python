@@ -2,9 +2,14 @@ import random
 
 #Card Constants
 SUIT_TUPLE = ('Spaces', 'Hearts', 'Clubs', 'Diamonds')
-RANK_TUPLE = ('Ace, '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King')
+RANK_TUPLE = ('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King')
 
 NCARDS = 8
+
+# pass in a deck and this function returns a random card from the deck
+def getCard(deckListIn):
+    thisCard = deckListIn.pop() #pop one off the top of the deck and return
+    return thisCard
 
 # Pass in a deck and this function returns a shuffled copy of the deck
 def shuffle(deckListIn):
@@ -59,19 +64,19 @@ while True:
             else: 
                 print('Sorry, it as not higher')
                 score = score - 15
-            elif answer == 'l':
-                if nextCardValue < currentCardValue:
-                    score = score + 20
-                    print('You got it right, it was lower')
+        elif answer == 'l':
+            if nextCardValue < currentCardValue:
+                score = score + 20
+                print('You got it right, it was lower')
 
-                else:
-                    score = score - 15
-                    print('Sorry, it was not lower')
-            print('Your score is: ', score)
-            print()
-            currentCardRank = nextCardRank
-            currentCardValue = nextCardValue
-        goAgain = input('To play again, press ENTER, or "q" to quit: ')
-        if goAgain == 'q':
-            break
-    print('OK bye')
+            else:
+                score = score - 15
+                print('Sorry, it was not lower')
+        print('Your score is: ', score)
+        print()
+        currentCardRank = nextCardRank
+        currentCardValue = nextCardValue
+    goAgain = input('To play again, press ENTER, or "q" to quit: ')
+    if goAgain == 'q':
+        break
+print('OK bye')
