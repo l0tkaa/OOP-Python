@@ -3,13 +3,16 @@ Non-OOP
 Bank 2
 Single Account
 with Functions
+Operations (verbs): Create(An Account), Deposit, Withdraw, Check Balance
+Data (nouns): Customer Name, Password, Balance
 '''
-
+#set global variables
 accountName = ''
 accountBalance = 0
 accountPassword = ''
 
 def newAccount(name, balance, password):
+        #get global variables
         global accountName, accountBalance, accountPassword
         accountName = name
         accountBalance = balance
@@ -43,6 +46,7 @@ def deposit(amountToDeposit, password):
         return accountBalance
 
 def withdraw(amountToWithdraw, password):
+        #get global variables
         global accountName, accountBalance, accountPassword
         if amountToWithdraw <0:
                 print('You cannot withdraw a negative amount!')
@@ -51,10 +55,47 @@ def withdraw(amountToWithdraw, password):
         if password != accountPassword:
                 print('Incorrect password for this account')
                 return None
-        
+        #accesses the global variable accountPassword. Should not be possible. 
+
+
         if amountToWithdraw > accountBalance:
                 print('You cannot withdraw more than you have in your account')
                 return None
         
         accountBalance = accountBalance - amountToWithdraw
         return accountBalance
+        # modifies global variable accountBalance. should NEVER modify global variable
+
+newAccount("Joe", 100, 'soup') #create an account with defined function inputs
+
+while True:
+        print():
+        print('Press b to get the balance')
+        print('Press d to make a deposit')
+        print('Press w to make a withdrawal')
+        print('Press s to show the account')
+        print('Press q to quit')
+        print()
+
+        action = input('What do you want to do? ')
+        action = action.lower() # force lowercase
+        action = action[0] # just use first letter
+        print()
+
+        if action == 'b': 
+                print('Get Balance: ')
+                userPassword = input(' Please enter the password:  ')
+                theBalance = getBalance(userPassword)
+                if theBalance is not None:
+                        print('Your balance is: ', theBalance)
+        
+        elif action == 'd':
+                print('Deposit: ')
+                userDepositAmount = input('Please enter amount to deposit: ')
+                userDepositAmount = int(userDepositAmount)
+                userPassword = input('Please enter the password: ')
+
+                newBalance = deposit(userDepositAmount, userPassword)
+                if newBalance is not None:
+                        print('Your new balance is: ', newBalance)
+print('Done')
