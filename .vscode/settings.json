@@ -1,0 +1,6 @@
+{
+    "C_Cpp.autocompleteAddParentheses": true,
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 8,
+    "editor.autoClosingQuotes": "always"
+}
